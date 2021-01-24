@@ -38,8 +38,11 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     models.Student.create({
-        name: req.body.name,
+        lastname: req.body.lastname,
+        firstname: req.body.firstname,
         gpa: req.body.gpa,
+        email: req.body.email,
+        campusId: req.body.campusId
     })
     .then(student => {
         res.status(201)
@@ -61,8 +64,11 @@ router.put('/:id', (req, res, next) => {
     models.Student.findByPk(req.params.id)
     .then(student => {
         student.update({
-            name: req.body.name,
-            gpa: req.body.gpa
+            lastname: req.body.lastname,
+            firstname: req.body.firstname,
+            gpa: req.body.gpa,
+            email: req.body.email,
+            campusId: req.body.campusId
         });
 
         student.save();

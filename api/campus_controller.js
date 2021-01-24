@@ -3,7 +3,11 @@ const router = express.Router();
 const models = require('../database/models');
 
 router.get('/', (req, res, next) => {
-    models.Campus.findAll()
+    models.Campus.findAll({
+        include:{
+            model: models.Student
+        }
+    })
     .then(campuses => {
         res.status(200)
         .json({
@@ -40,6 +44,7 @@ router.post('/', (req, res, next) => {
     models.Campus.create({
         name: req.body.name,
         description: req.body.description,
+        address: req.body.address
     })
     .then(campus => {
         res.status(201)
@@ -62,7 +67,8 @@ router.put('/:id', (req, res, next) => {
     .then(campus => {
         campus.update({
             name: req.body.name,
-            gpa: req.body.gpa
+            gpa: req.body.gpa,
+            address: req.body.address
         });
 
         campus.save();

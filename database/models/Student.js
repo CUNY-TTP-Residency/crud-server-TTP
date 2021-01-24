@@ -10,7 +10,7 @@ const Student = db.sequelize.define('student', {
         }
     },
 
-    firstname: {
+    lastname: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
@@ -34,7 +34,9 @@ const Student = db.sequelize.define('student', {
     gpa: {
         type: Sequelize.FLOAT,
         validate: {
-            len: [0.0, 4.0]
+            max: 4,
+            min: 0,
+            isFloat: true
         }
     }
 })
