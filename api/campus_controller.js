@@ -39,7 +39,9 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
     models.Campus.create({
         name: req.body.name,
+        address: req.body.address,
         description: req.body.description,
+        imgUrl: req.body.ImgUrl
     })
     .then(campus => {
         res.status(201)
